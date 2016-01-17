@@ -72,6 +72,9 @@ void dt_undo_do_redo(dt_undo_t *self, uint32_t filter);
 //  removes all items which correspond to filter in the undo/redo lists
 void dt_undo_clear(dt_undo_t *self, uint32_t filter);
 
+void dt_undo_iterate(dt_undo_t *self, uint32_t filter, gpointer user_data,
+                     void (*apply)(gpointer user_data, dt_undo_type_t type, dt_undo_data_t *item));
+
 #endif
 // modelines: These editor modelines have been set for all relevant files by tools/update_modelines.sh
 // vim: shiftwidth=2 expandtab tabstop=2 cindent

@@ -38,6 +38,7 @@
 #include "common/tags.h"
 #include "common/debug.h"
 #include "develop/masks.h"
+#include "views/undo.h"
 #include "gui/gtk.h"
 #include "gui/presets.h"
 
