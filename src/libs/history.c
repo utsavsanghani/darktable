@@ -187,17 +187,21 @@ static GList *_duplicate_history(GList *hist)
   {
     const dt_dev_history_item_t *old = (dt_dev_history_item_t *)(h->data);
 
-    dt_dev_history_item_t *new = (dt_dev_history_item_t *)malloc(sizeof(dt_dev_history_item_t));
+    if (memcmp(old->params, old->module->default_params, old->module->params_size)!=0
+        || memcmp(old->blend_params, old->module->default_blendop_params, sizeof(dt_develop_blend_params_t))!=0)
+    {
+      dt_dev_history_item_t *new = (dt_dev_history_item_t *)malloc(sizeof(dt_dev_history_item_t));
 
-    memcpy(new, old, sizeof(dt_dev_history_item_t));
+      memcpy(new, old, sizeof(dt_dev_history_item_t));
 
-    new->params = malloc(old->module->params_size);
-    new->blend_params = malloc(sizeof(dt_develop_blend_params_t));
+      new->params = malloc(old->module->params_size);
+      new->blend_params = malloc(sizeof(dt_develop_blend_params_t));
 
-    memcpy(new->params, old->params, old->module->params_size);
-    memcpy(new->blend_params, old->blend_params, sizeof(dt_develop_blend_params_t));
+      memcpy(new->params, old->params, old->module->params_size);
+      memcpy(new->blend_params, old->blend_params, sizeof(dt_develop_blend_params_t));
 
-    result = g_list_append(result, new);
+      result = g_list_append(result, new);
+    }
 
     h = g_list_next(h);
   }
