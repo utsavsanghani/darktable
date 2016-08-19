@@ -6,7 +6,7 @@ if(USE_OPENCL)
 	add_subdirectory(kernels)
 endif(USE_OPENCL)
 
-#
+#eou;oeu
 # Generate and instal darktable.css
 #
 if ("${GTK3_VERSION}" VERSION_GREATER "3.19.0")
